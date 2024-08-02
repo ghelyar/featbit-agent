@@ -1,3 +1,4 @@
+using Api.HealthChecks;
 using Api.Messaging;
 using Api.Store;
 using Api.Persistence;
@@ -16,7 +17,8 @@ public static class ServicesRegister
         services.AddControllers();
 
         // health check dependencies
-        services.AddHealthChecks();
+        services.AddHealthChecks()
+            .AddCheck<DataSyncedHealthCheck>("data_synced", tags: ["ready"]);
 
         // cors
         services.AddCors(options => options.AddDefaultPolicy(policyBuilder =>

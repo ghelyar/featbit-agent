@@ -11,6 +11,8 @@ public static class MiddlewaresRegister
         // health check endpoints for external use
         app.MapHealthChecks("health/liveness", new HealthCheckOptions { Predicate = _ => false });
 
+        app.MapHealthChecks("/health/ready", new HealthCheckOptions { Predicate = check => check.Tags.Contains("ready") });
+
         // enable streaming
         app.UseStreaming();
 
