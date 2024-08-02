@@ -36,7 +36,7 @@ public static class ServicesRegister
         services.AddHostedService<CachePopulationHostedService>();
 
         // repository
-        services.AddDbContext<FbDbContext>(options => { options.UseSqlite("Data Source=featbit.db"); });
+        services.AddDbContext<FbDbContext>(options => { options.UseSqlite("Data Source=data/featbit.db"); });
         services.AddScoped<IRepository, SqliteRepository>();
         
         // data change notifier
